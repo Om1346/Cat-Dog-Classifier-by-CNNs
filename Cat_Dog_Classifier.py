@@ -52,19 +52,20 @@ if uploaded_file:
 
     if st.button("Predict"):
         img = preprocess_image(image)
-        preds = model.predict(img)[0]
-
-        confidence = np.max(preds) * 100
-        predicted_class = class_names[np.argmax(preds)]
+        preds = model.predict(img)[0][0]
 
         cat_prob = (1 - preds) * 100
         dog_prob = preds * 100
 
+        
+        if preds > 0.5:
+            predicted_class = "Dog"
+            confidence = dog_prob
+        else:
+            predicted_class = "Cat"
+            confidence = cat_prob
+        
+
+        st.success(f"Prediction: {predicted_class}")
         st.write(f"🐱 Cat: {cat_prob:.2f}%")
         st.write(f"🐶 Dog: {dog_prob:.2f}%")
-
-        
-        st.success(f"Prediction: {predicted_class}")
-        st.info(f"Confidence: {confidence:.2f}%")
-
-
