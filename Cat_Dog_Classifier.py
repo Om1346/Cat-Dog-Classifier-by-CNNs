@@ -57,6 +57,14 @@ if uploaded_file:
         confidence = np.max(preds) * 100
         predicted_class = class_names[np.argmax(preds)]
 
+        cat_prob = (1 - preds) * 100
+        dog_prob = preds * 100
+
+        st.write(f"🐱 Cat: {cat_prob:.2f}%")
+        st.write(f"🐶 Dog: {dog_prob:.2f}%")
+
+        
         st.success(f"Prediction: {predicted_class}")
         st.info(f"Confidence: {confidence:.2f}%")
+
 
