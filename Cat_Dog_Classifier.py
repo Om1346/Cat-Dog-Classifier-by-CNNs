@@ -59,14 +59,15 @@ if uploaded_file:
 
         
         if preds > 0.5:
-            predicted_class = "Dog"
+            predicted_class = "Cat"
             confidence = dog_prob
         else:
-            predicted_class = "Cat"
+            predicted_class = "Dog"
             confidence = cat_prob
         
 
         st.success(f"Prediction: {predicted_class}")
         st.write(f"🐱 Cat: {cat_prob:.2f}%")
         st.write(f"🐶 Dog: {dog_prob:.2f}%")
+
 
