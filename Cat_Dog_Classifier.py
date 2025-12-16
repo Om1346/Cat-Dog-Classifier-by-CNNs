@@ -54,16 +54,16 @@ if uploaded_file:
         img = preprocess_image(image)
         preds = model.predict(img)[0][0]
 
-        cat_prob = (1 - preds) * 100
-        dog_prob = preds * 100
+        dog_prob = (1 - preds) * 100
+        cat_prob = preds * 100
 
         
         if preds > 0.5:
             predicted_class = "Dog"
-            confidence = cat_prob
+            confidence = dog_prob
         else:
             predicted_class = "Cat"
-            confidence = dog_prob
+            confidence = cat_prob
         
 
         st.success(f"Prediction: {predicted_class}")
